@@ -16,6 +16,13 @@ public class SVM {
             int tmpLabel = label[randomIndex] == label1? 1 : -1;
             double flag = 0.0;
             for (int i = 0; i != featureNum; ++i) {
+                if (randomIndex >= feature.length) {
+                    System.out.println("randomIndex: " + randomIndex + "  feature.length: " + feature.length);
+                } else if (i >= feature[randomIndex].length) {
+                    System.out.println("i: " + i + "  feature length: " + feature[randomIndex].length);
+                } else if (i >= w.length) {
+                    System.out.println( i + "   " + w.length);
+                }
                 flag += feature[randomIndex][i] * w[i];
             }
             flag *= tmpLabel;
@@ -39,7 +46,7 @@ public class SVM {
         return flag > 0? label1 : label2;
     }
 
-    private static final double coe = 0.0001;
+    private static final double coe = 0.001;
     private int T;
     private double[] w;
     private int label1;

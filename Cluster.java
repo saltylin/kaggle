@@ -195,6 +195,6 @@ public class Cluster {
     private int trainNum;
     private Map<Integer, List<Integer>> labelMap = new HashMap<Integer, List<Integer>>();
     private Map<Integer, List<Map<String, Integer>>> cateValueFreqMap = new HashMap<Integer, List<Map<String, Integer>>>();
-    private final static int clusterNum = 5;
+    public final static int clusterNum = 1;
 
 }

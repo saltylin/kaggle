@@ -4,13 +4,13 @@ public class EnsembleSVM {
 
     public EnsembleSVM(double[][] feature, int[] label, int labelNum) {
         this.labelNum = labelNum;
-        List<List<double[]>> eachFeatureList = new ArrayList<List<double>>();
+        List<List<double[]>> eachFeatureList = new ArrayList<List<double[]>>();
         List<List<Integer>> eachLabelList = new ArrayList<List<Integer>>();
         for (int i = 1; i <= labelNum; ++i) {
             List<double[]> singleFeatureList = new ArrayList<double[]>();
             List<Integer> singleLabelList = new ArrayList<Integer>();
             for (int j = 0; j != label.length; ++j) {
-                if (label[j] = i) {
+                if (label[j] == i) {
                     singleFeatureList.add(feature[j]);
                     singleLabelList.add(label[j]);
                 }
@@ -26,7 +26,7 @@ public class EnsembleSVM {
                 singleFeatureList.addAll(eachFeatureList.get(j - 1));
                 singleLabelList.addAll(eachLabelList.get(i - 1));
                 singleLabelList.addAll(eachLabelList.get(j - 1));
-                double[][] trainFeature = singleFeature.toArray(new double[0][]);
+                double[][] trainFeature = singleFeatureList.toArray(new double[0][]);
                 int[] trainLabel = new int[singleLabelList.size()];
                 for (int k = 0; k != singleLabelList.size(); ++k) {
                     trainLabel[k] = singleLabelList.get(k);
@@ -51,7 +51,7 @@ public class EnsembleSVM {
                 maxIndex = i;
             }
         }
-        return i;
+        return maxIndex;
     }
     
     private List<SVM> svmList = new ArrayList<SVM>();

@@ -39,15 +39,19 @@ public class DataReader {
                 responseList = new ArrayList<Integer>();
             }
             while(scanner.hasNextLine()) {
-                String[] attrValue = scanner.nextLine().split("[,\"]+");
+                String[] attrValue = scanner.nextLine().split(",");
                 double[] singleNumFeature = new double[numFeatureNum];
                 String[] singleCateFeature = new String[cateFeatureNum];
-                idList.add(Integer.valueOf(attrValue[0]);
+                idList.add(Integer.valueOf(attrValue[0]));
                 int numI = 0;
                 int cateI = 0;
                 for (int i = 0; i != dataType.length; ++i) {
                     if (dataType[i] == DataType.numeric) {
-                        singleNumFeature[numI++] = Double.parseDouble(attrValue[i + 1]);
+                        if (attrValue[i + 1].equals("")) {
+                            singleNumFeature[numI++] = 0.0;
+                        } else {
+                            singleNumFeature[numI++] = Double.parseDouble(attrValue[i + 1]);
+                        }
                     } else {
                         singleCateFeature[cateI++] = attrValue[i + 1];
                     }
@@ -59,6 +63,7 @@ public class DataReader {
                     responseList.add(singleResponse);
                 }
             }
+            scanner.close();
             id = new int[idList.size()];
             for (int i = 0; i != id.length; ++i) {
                 id[i] = idList.get(i);
