@@ -36,7 +36,7 @@ public class Cluster {
 
     private void init() {
         calLabelMap();
-        int start = 0;
+        int start = 1;
         for (int labelId: labelMap.keySet()) {
             List<Integer> idList = labelMap.get(labelId);
             normalizeEachClass(idList);

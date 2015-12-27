@@ -31,6 +31,7 @@ public class DataReader {
                     dataType[i] = DataType.categorical;
                 }
             }
+            List<Integer> idList = new ArrayList<Integer>();
             List<double[]> numFeatureList = new ArrayList<double[]>();
             List<String[]> cateFeatureList = new ArrayList<String[]>();
             List<Integer> responseList = null;
@@ -41,6 +42,7 @@ public class DataReader {
                 String[] attrValue = scanner.nextLine().split("[,\"]+");
                 double[] singleNumFeature = new double[numFeatureNum];
                 String[] singleCateFeature = new String[cateFeatureNum];
+                idList.add(Integer.valueOf(attrValue[0]);
                 int numI = 0;
                 int cateI = 0;
                 for (int i = 0; i != dataType.length; ++i) {
@@ -57,6 +59,10 @@ public class DataReader {
                     responseList.add(singleResponse);
                 }
             }
+            id = new int[idList.size()];
+            for (int i = 0; i != id.length; ++i) {
+                id[i] = idList.get(i);
+            }
             numFeature = numFeatureList.toArray(new double[0][]);
             cateFeature = cateFeatureList.toArray(new String[0][]);
             if (isTrainingFile) {
@@ -71,6 +77,10 @@ public class DataReader {
         }
     }
 
+    public int[] getId() {
+        return id;
+    }
+
     public double[][] getNumFeature() {
         return numFeature;
     }
@@ -83,6 +93,7 @@ public class DataReader {
         return response;
     }
 
+    private int[] id;
     private double[][] numFeature;
     private String[][] cateFeature;
     private int[] response;
