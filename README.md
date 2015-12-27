@@ -1,2 +1,2 @@
 # kaggle
-d
+The assignment of Data Mining
